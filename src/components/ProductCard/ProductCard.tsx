@@ -13,9 +13,11 @@ function ProductCard({ product, cart, setCart }: ProductCardProps) {
   const { id, title, image, price } = product;
 
   const count = cart.get(id)?.count ?? 0;
-  console.log(count);
 
   function changeCount(n: number) {
+    // Handle malformed input
+    if (Number.isNaN(n)) return;
+
     const newCart = new Map(cart);
     const newCount = Math.max(0, n);
     if (newCount === 0) {
