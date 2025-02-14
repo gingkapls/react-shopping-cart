@@ -1,7 +1,7 @@
 import ProductList from '../components/ProductList/ProductList';
 import useData from '../hooks/useData';
 import { Product, QueryBuilder } from '../lib/api';
-import { useCart } from '../App';
+import { useCart } from '../lib/contexts';
 
 function ProductsPage() {
   const query = new QueryBuilder()

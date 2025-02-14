@@ -1,22 +1,27 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Product } from '../../lib/api';
 import styles from './ProductCard.module.css';
+import { cart } from '../../routes/CartPage';
 
-interface ProductCardProps extends Product {
-  cart: Map<number, number>;
-  setCart: Dispatch<SetStateAction<Map<number, number>>>;
+interface ProductCardProps {
+  product: Product;
+  cart: cart;
+  setCart: Dispatch<SetStateAction<cart>>;
 }
 
-function ProductCard({ id, title, image, cart, setCart }: ProductCardProps) {
-  const count = cart.get(id) ?? 0;
+function ProductCard({ product, cart, setCart }: ProductCardProps) {
+  const { id, title, image, price } = product;
 
-  function changeCount(n: 1 | -1) {
+  const count = cart.get(id)?.count ?? 0;
+  console.log(count);
+
+  function changeCount(n: number) {
     const newCart = new Map(cart);
-    const newCount = Math.max(0, count + n);
+    const newCount = Math.max(0, n);
     if (newCount === 0) {
       newCart.delete(id);
     } else {
-      newCart.set(id, newCount);
+      newCart.set(id, { ...product, count: newCount });
     }
     setCart(newCart);
   }
@@ -27,15 +32,21 @@ function ProductCard({ id, title, image, cart, setCart }: ProductCardProps) {
       <h3>{title}</h3>
       <div>
         {count === 0 ? (
-          <button onClick={() => changeCount(1)}>Add to cart</button>
+          <button onClick={() => changeCount(count + 1)}>Add to cart</button>
         ) : (
           <>
-            <button onClick={() => changeCount(-1)}>-</button>
-            {count}
-            <button onClick={() => changeCount(1)}>+</button>
+            <button onClick={() => changeCount(count - 1)}>-</button>
+            <input
+              type='number'
+              min={0}
+              onChange={(e) => changeCount(parseInt(e.target.value))}
+              value={count}
+            />
+            <button onClick={() => changeCount(count + 1)}>+</button>
           </>
         )}
       </div>
+      <span>Price ${price}</span>
     </div>
   );
 }
