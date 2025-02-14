@@ -8,16 +8,16 @@ const routes = [
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <ProductsPage /> },
       {
         path: 'products',
         element: <ProductsPage />,
+        children: [
+          {
+            path: ':category',
+            element: <CategoryPage />,
+          },
+        ],
       },
-      {
-        path: ':category',
-        element: <CategoryPage />,
-      },
-
       {
         path: 'cart',
         element: <CartPage />,
