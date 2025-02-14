@@ -12,6 +12,7 @@ interface ProductCardProps {
 function ProductCard({ product, cart, setCart }: ProductCardProps) {
   const { id, title, image, price } = product;
 
+  // product doesn't exist in our cart
   const count = cart.get(id)?.count ?? 0;
 
   function changeCount(n: number) {
