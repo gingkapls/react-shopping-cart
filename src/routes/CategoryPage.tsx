@@ -1,14 +1,13 @@
 import { useParams } from 'react-router';
-import ProductCard from '../components/ProductCard/ProductCard';
 import ProductList from '../components/ProductList/ProductList';
 import useData from '../hooks/useData';
 import { Category, Product, QueryBuilder } from '../lib/api';
 import { useCart } from '../lib/contexts';
 
 function CategoryPage() {
-  const { category = 'electronics' } = useParams() as { category: Category};
+  const { category = 'electronics' } = useParams() as { category: Category };
   const query = new QueryBuilder().type('category').category(category).build();
-  console.log(query);
+
   const { data, error, isLoading } = useData<Product[]>(query);
   const { cart, setCart } = useCart();
 
