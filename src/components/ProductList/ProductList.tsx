@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Product } from '../../lib/api';
 import ProductCard from '../ProductCard/ProductCard';
+import { cart } from '../../routes/CartPage';
 
 interface ProductListProps {
   products: Product[];
-  cart: Map<number, number>;
-  setCart: Dispatch<SetStateAction<Map<number, number>>>;
+  cart: cart;
+  setCart: Dispatch<SetStateAction<cart>>;
 }
 
 function ProductList({ products, cart, setCart }: ProductListProps) {
@@ -14,7 +15,7 @@ function ProductList({ products, cart, setCart }: ProductListProps) {
       {products.map((product) => (
         <ProductCard
           key={product.id}
-          {...product}
+          product={product}
           setCart={setCart}
           cart={cart}
         />
