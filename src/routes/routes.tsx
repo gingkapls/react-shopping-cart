@@ -1,5 +1,6 @@
 import App from '../App';
 import { CartPage } from './CartPage';
+import CategoryPage from './CategoryPage';
 import ProductsPage from './ProductsPage';
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
         path: 'products',
         element: <ProductsPage />,
       },
+      {
+        path: ':category',
+        element: <CategoryPage />,
+      },
+
       {
         path: 'cart',
         element: <CartPage />,

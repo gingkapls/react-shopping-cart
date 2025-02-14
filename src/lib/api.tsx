@@ -64,6 +64,11 @@ export class QueryBuilder {
     return this;
   }
 
+  category(category: Category) {
+    this.#category = category;
+    return this;
+  }
+
   build() {
     let url = this.#baseUrl;
     switch (this.#query) {
@@ -77,7 +82,7 @@ export class QueryBuilder {
         url += '/' + this.#id;
         break;
       case 'category':
-        url += '/' + this.#category;
+        url += '/category/' + this.#category;
     }
 
     return encodeURI(url);
