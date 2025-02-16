@@ -38,14 +38,21 @@ function ProductCard({ product, cart, setCart }: ProductCardProps) {
           <button onClick={() => changeCount(count + 1)}>Add to cart</button>
         ) : (
           <>
-            <button onClick={() => changeCount(count - 1)}>-</button>
+            <button onClick={() => changeCount(count - 1)} aria-label='decrement'>
+              -
+            </button>
             <input
               type='number'
               min={0}
               onChange={(e) => changeCount(parseInt(e.target.value))}
               value={count}
             />
-            <button onClick={() => changeCount(count + 1)}>+</button>
+            <button
+              onClick={() => changeCount(count + 1)}
+              aria-label='increment'
+            >
+              +
+            </button>
           </>
         )}
       </div>
