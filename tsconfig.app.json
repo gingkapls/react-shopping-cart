@@ -6,7 +6,12 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "types": [ "vitest" ],
+    "types": [
+      "vitest",
+      "@testing-library/react",
+      "@testing-library/user-event",
+      "@testing-library/jest-dom"
+    ],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -23,5 +28,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "tests", "tests"]
+  "include": ["src", "tests"]
 }
