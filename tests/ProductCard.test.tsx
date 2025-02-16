@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 import ProductCard from '../src/components/ProductCard/ProductCard';
 import { cartItem } from '../src/routes/CartPage';
 
-function setupProductCard() {
+function setupProductCard(itemCount = 0) {
   const mockItem = {
     id: 1,
     title: 'Laptop',
@@ -12,11 +12,13 @@ function setupProductCard() {
     image: 'imageUrl',
     price: 12.5,
     category: 'electronics',
-    count: 0,
+    count: itemCount,
   } satisfies cartItem;
 
   const cart = new Map<number, cartItem>();
   const setCart = vi.fn();
+
+  if (itemCount > 0) cart.set(mockItem.id, { ...mockItem, count: itemCount });
 
   return {
     user: userEvent.setup(),
@@ -55,7 +57,7 @@ describe('Product Card Component', () => {
     });
 
     it('displays product details and relevant buttons when its in cart', () => {
-      const { mockItem } = setupProductCard();
+      const { mockItem } = setupProductCard(1);
 
       expect(screen.getByRole('heading').textContent).toMatch(mockItem.title);
 
@@ -75,5 +77,4 @@ describe('Product Card Component', () => {
       expect(buttonDecrement).toBeInTheDocument();
     });
   });
-
 });
