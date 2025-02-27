@@ -1,12 +1,10 @@
-import { describe, expect, it, vi } from 'vitest';
-import { allItems, setupRoute } from './utils';
+import { describe, expect, it } from 'vitest';
+import { allItems, mockFetch, setupRoute } from './utils';
 import { Category } from '../src/lib/api';
-import { screen, waitForElementToBeRemoved } from '@testing-library/dom';
+import { screen } from '@testing-library/dom';
 
 // Mocking our requests
-globalThis.fetch = vi
-  .fn()
-  .mockResolvedValue({ ok: true, json: () => Promise.resolve(allItems) });
+globalThis.fetch = mockFetch(allItems);
 
 describe('ProductsPage', () => {
   it('renders loading text on start', () => {

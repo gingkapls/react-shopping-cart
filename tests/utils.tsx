@@ -8,6 +8,7 @@ import {
 } from '@testing-library/react';
 
 import { cartItem } from '../src/routes/CartPage';
+import { vi } from 'vitest';
 
 const allItems = [
   {
@@ -17,7 +18,7 @@ const allItems = [
     image: 'imageUrl',
     price: 12.5,
     category: 'electronics',
-    count: 1,
+    count: 0,
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const allItems = [
     image: 'imageUrl',
     price: 12.5,
     category: 'electronics',
-    count: 2,
+    count: 0,
   },
   {
     id: 3,
@@ -35,7 +36,7 @@ const allItems = [
     image: 'imageUrl',
     price: 12.5,
     category: "men's clothing",
-    count: 5,
+    count: 0,
   },
 ] satisfies cartItem[];
 
@@ -53,4 +54,8 @@ function setupRoute(route: string) {
   };
 }
 
-export { allItems, setupRoute };
+function mockFetch(data: unknown, ok = true) {
+  return vi.fn().mockResolvedValue({ ok, json: () => Promise.resolve(data) });
+}
+
+export { allItems, setupRoute, mockFetch };

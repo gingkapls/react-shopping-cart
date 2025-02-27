@@ -1,11 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
-import { allItems, setupRoute } from './utils';
-import { screen, waitForElementToBeRemoved } from '@testing-library/dom';
+import { describe, expect, it } from 'vitest';
+import { allItems, mockFetch, setupRoute } from './utils';
+import { screen } from '@testing-library/dom';
 
 const electronics = allItems.filter((item) => item.category === 'electronics');
-globalThis.fetch = vi
-  .fn()
-  .mockResolvedValue({ ok: true, json: () => Promise.resolve(electronics) });
+globalThis.fetch = mockFetch(electronics);
 
 describe('CategoryPage', () => {
   it('renders products of only one category', async () => {
