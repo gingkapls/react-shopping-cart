@@ -6,7 +6,7 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/dom';
 // Mocking our requests
 globalThis.fetch = vi
   .fn()
-  .mockResolvedValue({ ok: true, json: () => Promise.resolve(allItems)});
+  .mockResolvedValue({ ok: true, json: () => Promise.resolve(allItems) });
 
 describe('ProductsPage', () => {
   it('renders loading text on start', () => {
@@ -15,7 +15,7 @@ describe('ProductsPage', () => {
   });
 
   it('renders categories eventually', async () => {
-    setupRoute('/products');
+    const { waitForLoading } = setupRoute('/products');
 
     const categories: Category[] = [
       'electronics',
@@ -24,27 +24,24 @@ describe('ProductsPage', () => {
       "women's clothing",
     ];
 
-    const loading = () => screen.queryByText(/loading/i);
-    await waitForElementToBeRemoved(loading);
+    await waitForLoading();
 
     categories.forEach((category) => {
       expect(screen.getByText(category)).toBeInTheDocument();
     });
   });
-  
-  it('renders products eventually', async () => {
-    setupRoute('/products');
 
-    const loading = () => screen.queryByText(/loading/i);
-    await waitForElementToBeRemoved(loading);
-    
+  it('renders products eventually', async () => {
+    const { waitForLoading } = setupRoute('/products');
+
+    await waitForLoading();
+
     const products = screen.getAllByLabelText('product-title');
-    
+
     expect(products.length).toBe(allItems.length);
 
-    expect(products[0].textContent).toBe(allItems[0].title)
-    expect(products[1].textContent).toBe(allItems[1].title)
-    expect(products[2].textContent).toBe(allItems[2].title)
-    
-  })
+    expect(products[0].textContent).toBe(allItems[0].title);
+    expect(products[1].textContent).toBe(allItems[1].title);
+    expect(products[2].textContent).toBe(allItems[2].title);
+  });
 });

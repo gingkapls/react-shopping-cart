@@ -1,7 +1,11 @@
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import routes from '../src/routes/routes';
 import userEvent from '@testing-library/user-event';
-import { render } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 
 import { cartItem } from '../src/routes/CartPage';
 
@@ -37,8 +41,14 @@ const allItems = [
 
 function setupRoute(route: string) {
   const router = createMemoryRouter(routes, { initialEntries: [route] });
+  async function waitForLoading() {
+    return await waitForElementToBeRemoved(() =>
+      screen.queryByText(/loading/i)
+    );
+  }
   return {
     user: userEvent.setup(),
+    waitForLoading,
     ...render(<RouterProvider router={router} />),
   };
 }
