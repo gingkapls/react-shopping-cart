@@ -35,16 +35,15 @@ function setupProductList(itemCount: number) {
     },
   ] satisfies cartItem[];
 
-  const items = allItems.slice(0, itemCount);
+  // Only render itemCount items
+  const items = allItems.slice(0, Math.min(itemCount, 3));
 
   const cart = new Map<number, cartItem>();
   const setCart = vi.fn();
 
-  if (itemCount > 0) {
-    for (let i = 0; i < Math.min(3, itemCount); ++i) {
-      cart.set(items[i].id, items[i]);
-    }
-  }
+  items.forEach((item) => {
+    cart.set(item.id, item);
+  });
 
   return {
     user: userEvent.setup(),
