@@ -1,21 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { createMemoryRouter, RouterProvider } from 'react-router';
+import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import routes from '../src/routes/routes';
-
-function setupHome() {
-  const [home] = routes;
-  const router = createMemoryRouter([home]);
-  return {
-    user: userEvent.setup(),
-    ...render(<RouterProvider router={router} />),
-  };
-}
+import { setupRoute } from './utils';
 
 describe('Home route', () => {
   it('renders home', () => {
-    setupHome();
+    setupRoute('/');
     expect(screen.queryByText(/welcome to my store/i)).toBeInTheDocument();
   });
 });

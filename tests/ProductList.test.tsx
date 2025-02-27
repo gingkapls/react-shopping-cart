@@ -3,38 +3,9 @@ import { cartItem } from '../src/routes/CartPage';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import ProductList from '../src/components/ProductList/ProductList';
+import { allItems } from './utils';
 
 function setupProductList(itemCount: number) {
-  const allItems = [
-    {
-      id: 1,
-      title: 'Laptop',
-      description: 'This is a laptop',
-      image: 'imageUrl',
-      price: 12.5,
-      category: 'electronics',
-      count: 1,
-    },
-    {
-      id: 2,
-      title: 'Toy',
-      description: 'This is a toy',
-      image: 'imageUrl',
-      price: 12.5,
-      category: 'electronics',
-      count: 2,
-    },
-    {
-      id: 3,
-      title: 'Shirt',
-      description: 'This is a shirt',
-      image: 'imageUrl',
-      price: 12.5,
-      category: "men's clothing",
-      count: 5,
-    },
-  ] satisfies cartItem[];
-
   // Only render itemCount items
   const items = allItems.slice(0, Math.min(itemCount, 3));
 
