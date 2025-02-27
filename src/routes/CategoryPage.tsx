@@ -2,7 +2,7 @@ import { useParams } from 'react-router';
 import ProductList from '../components/ProductList/ProductList';
 import useData from '../hooks/useData';
 import { Category, Product, QueryBuilder } from '../lib/api';
-import { useCart } from '../lib/contexts';
+import { useCart } from '../hooks/contexts';
 
 function CategoryPage() {
   const { category = 'electronics' } = useParams() as { category: Category };

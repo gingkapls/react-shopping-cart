@@ -1,6 +1,6 @@
 import ProductCard from '../components/ProductCard/ProductCard';
 import { Product } from '../lib/api';
-import { useCart } from '../lib/contexts';
+import { useCart } from '../hooks/contexts';
 
 export interface cartItem extends Product {
   count: number;
