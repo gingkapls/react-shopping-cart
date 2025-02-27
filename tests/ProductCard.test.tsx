@@ -32,7 +32,7 @@ function setupProductCard(itemCount = 0) {
 describe('Product Card Component', () => {
   describe('product details', () => {
     it('displays product details when its not in cart', () => {
-      const { mockItem } = setupProductCard();
+      const { mockItem } = setupProductCard(0);
 
       const image = screen.getByRole<HTMLImageElement>('img');
       expect(image.src).toMatch(mockItem.image);
@@ -56,7 +56,7 @@ describe('Product Card Component', () => {
       expect(buttonDecrement).not.toBeInTheDocument();
     });
 
-    it('displays product details and relevant buttons when its in cart', () => {
+    it('displays product details and only relevant buttons when its in cart', () => {
       const { mockItem } = setupProductCard(1);
 
       expect(screen.getByRole('heading').textContent).toMatch(mockItem.title);
@@ -70,11 +70,29 @@ describe('Product Card Component', () => {
       const buttonIncrement = screen.getByRole('button', {
         name: /increment/i,
       });
+
       const buttonDecrement = screen.getByRole('button', {
         name: /decrement/i,
       });
+
       expect(buttonIncrement).toBeInTheDocument();
       expect(buttonDecrement).toBeInTheDocument();
     });
+    
+    it('shows item count when one copy of item is in cart', () => {
+      setupProductCard(1);
+
+      const counter = screen.getByRole<HTMLInputElement>('spinbutton');
+      expect(counter.value).toBe('1');
+    });
+
+    it('shows item count when multiple copies of item are in cart', () => {
+      setupProductCard(5);
+
+      const counter = screen.getByRole<HTMLInputElement>('spinbutton');
+      expect(counter.value).toBe('5');
+    });
+
+    
   });
 });
