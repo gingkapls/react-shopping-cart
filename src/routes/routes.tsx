@@ -1,13 +1,19 @@
+import { RouteObject } from 'react-router';
 import App from '../App';
 import { CartPage } from './CartPage';
 import CategoryPage from './CategoryPage';
 import ProductsPage from './ProductsPage';
+import Home from './Home';
 
 const routes = [
   {
     path: '/',
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: 'products',
         element: <ProductsPage />,
@@ -24,6 +30,6 @@ const routes = [
       },
     ],
   },
-];
+] satisfies RouteObject[];
 
 export default routes;
