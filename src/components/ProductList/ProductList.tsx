@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Product } from '../../lib/api';
 import ProductCard from '../ProductCard/ProductCard';
 import { cart } from '../../routes/CartPage';
+import styles from './ProductList.module.css';
 
 interface ProductListProps {
   products: Product[];
@@ -11,7 +12,7 @@ interface ProductListProps {
 
 function ProductList({ products, cart, setCart }: ProductListProps) {
   return (
-    <div className='product-list'>
+    <div className={styles['product-list']}>
       {products.map((product) => (
         <ProductCard
           key={product.id}

@@ -25,12 +25,14 @@ function ProductsPage() {
 
   if (isLoading || !data) return 'loading...';
   return (
-    <div>
-      {categories.map((category) => (
-        <Link key={category} to={category}>
-          {category}
-        </Link>
-      ))}
+    <div className='product-page'>
+      <nav>
+        {categories.map((category) => (
+          <Link key={category} to={category}>
+            {category}
+          </Link>
+        ))}
+      </nav>
       {category ? (
         <Outlet context={{ cart, setCart }} />
       ) : (

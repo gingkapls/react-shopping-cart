@@ -1,47 +1,67 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  background-color: #f9f9f9;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.product-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  display: block;
   text-align: center;
-}
+  border-radius: 8px;
+  font-size: 1.5rem;
+  padding: 8px;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+  & a {
+    margin: 1em;
+    display: inline-block;
+    text-transform: capitalize;
+    background: linear-gradient(to right, currentColor, currentColor);
+    background-position: 0 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: 400ms background-size;
+    background-size: 0 0.1em, 100% 0.1em;
+    transition-delay: 225ms;
+    color: black;
+    text-decoration: none;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+    &:hover {
+      background-size: 100% 0.1em, 0 0.1em;
+      transition: 400ms background-size;
+    }
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.product-list {
-  display: grid;
-  grid-template: masonry / auto;
+.cart {
+  background-color: #f9f9f9;
 }

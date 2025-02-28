@@ -32,7 +32,9 @@ function ProductCard({ product, cart, setCart }: ProductCardProps) {
   return (
     <div className={styles['product-card']} aria-label='product'>
       <img src={image} alt={title} className={styles['product-image']}></img>
-      <h3 aria-label='product-title'>{title}</h3>
+      <h3 aria-label='product-title' className={styles['product-title']} title={title} >
+        {title}
+      </h3>
       <div>
         {count === 0 ? (
           <button onClick={() => changeCount(count + 1)}>Add to cart</button>
