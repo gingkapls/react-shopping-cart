@@ -24,7 +24,7 @@ export function CartPage() {
           cart={cart}
         />
       ))}
-      <p>Total: ${totalPrice}</p>
+      <p>Total: ${totalPrice.toFixed(2)}</p>
     </div>
   );
 }
