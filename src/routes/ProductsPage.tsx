@@ -26,7 +26,7 @@ function ProductsPage() {
   if (isLoading || !data) return 'loading...';
   return (
     <div className='product-page'>
-      <nav>
+      <nav className='categories'>
         {categories.map((category) => (
           <Link key={category} to={category}>
             {category}

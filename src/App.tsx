@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <nav>
+      <nav className='main-nav'>
         <Link to='/'>Home</Link>
         <Link to='products'>Products</Link>
         <Link to='cart'>Cart [{numCartItems}]</Link>
