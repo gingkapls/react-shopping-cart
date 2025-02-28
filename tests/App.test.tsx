@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { allItems, mockFetch, setupRoute } from './utils';
 import { screen } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
 
 globalThis.fetch = mockFetch(allItems);
 
@@ -13,20 +12,18 @@ describe('App', () => {
       name: /products/i,
     });
     const cart = screen.getByRole<HTMLAnchorElement>('link', { name: /cart/i });
-    
+
     // Home page
     await user.click(home);
     expect(screen.getByText(/welcome/i)).toBeInTheDocument();
-    
+
     // Product Page
     await user.click(products);
     expect(screen.getAllByLabelText('product')).not.toBeNull();
-    
+
     // Cart Page
     await user.click(cart);
     expect(screen.getByText(/no items/i)).toBeInTheDocument();
-
-
   });
 
   it('adds a product to cart', async () => {
@@ -64,7 +61,7 @@ describe('App', () => {
     // Adding to cart
     await user.click(buttons[0]);
 
-    const cartLink = screen.getByRole('link', { name: /cart 1/i });
+    const cartLink = screen.getByRole('link', { name: /cart \[1\]/i });
 
     // navigating to cart
     await user.click(cartLink);
@@ -89,7 +86,7 @@ describe('App', () => {
     await user.click(buttons[0]);
     await user.click(buttons[1]);
 
-    const cartLink = screen.getByRole('link', { name: /cart 2/i });
+    const cartLink = screen.getByRole('link', { name: /cart \[2\]/i });
 
     // navigating to cart
     await user.click(cartLink);
@@ -115,7 +112,7 @@ describe('App', () => {
     // Adding to cart
     await user.click(buttons[0]);
 
-    const cartLink = screen.getByRole('link', { name: /cart 1/i });
+    const cartLink = screen.getByRole('link', { name: /cart \[1\]/i });
 
     // navigating to cart
     await user.click(cartLink);
@@ -145,7 +142,7 @@ describe('App', () => {
     // Adding to cart
     await user.click(buttons[0]);
 
-    const cartLink = screen.getByRole('link', { name: /cart 1/i });
+    const cartLink = screen.getByRole('link', { name: /cart \[1\]/i });
 
     // navigating to cart
     await user.click(cartLink);
@@ -175,7 +172,7 @@ describe('App', () => {
     // Adding to cart
     await user.click(buttons[0]);
 
-    const cartLink = screen.getByRole('link', { name: /cart 1/i });
+    const cartLink = screen.getByRole('link', { name: /cart \[1\]/i });
 
     // navigating to cart
     await user.click(cartLink);

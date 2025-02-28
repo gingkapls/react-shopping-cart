@@ -6,6 +6,6 @@ describe('CartPage', () => {
   it('renders no item text', () => {
     setupRoute('/cart');
     expect(screen.getByText(/no items/i)).toBeInTheDocument();
-    expect(screen.getByText(/cart 0/i)).toBeInTheDocument();
+    expect(screen.getByText(/cart \[0\]/i)).toBeInTheDocument();
   });
 });
