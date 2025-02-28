@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -16,7 +18,6 @@ body {
   margin: 0;
 }
 
-
 #root {
   flex-grow: 1;
   display: flex;
@@ -25,7 +26,8 @@ body {
   width: 100%;
   min-height: 100%;
   background-color: #f9f9f9;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 12px;
 }
 
 .product-page {
@@ -65,8 +67,48 @@ nav {
 .cart {
   background-color: #f9f9f9;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
+}
+
+.checkout-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #fff;
+  padding: 8px 24px;
+  border-radius: 8px;
+}
+
+.cart-items {
+  display: flex;
+  flex: 0.8;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-weight: 700;
+}
+
+input,
+button {
+  height: 2lh;
+  border-radius: 8px;
+  border: none;
+  margin: 4px;
+  text-align: center;
+  font-size: inherit;
+}
+
+& button {
+  background-color: #f9f9f9;
+  padding: 4px 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 200ms border-color;
+
+  &:hover {
+    border-color: rgba(0 0 0 / 0.5);
+  }
 }

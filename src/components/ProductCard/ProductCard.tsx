@@ -61,7 +61,7 @@ function ProductCard({ product, cart, setCart }: ProductCardProps) {
           </>
         )}
       </div>
-      <span>Price ${price}</span>
+      <span className='price'>Price ${price}</span>
     </div>
   );
 }

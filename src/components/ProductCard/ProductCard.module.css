@@ -13,36 +13,10 @@
   border-radius: 8px;
   border: 2px solid transparent;
 
-  & span {
-    font-weight: 700;
-  }
-
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     border-color: rgba(0 0 0 / 0.5);
     transition: 250ms transform, 250ms border-color;
-  }
-
-  & input,
-  button {
-    height: 2lh;
-    border-radius: 8px;
-    border: none;
-    margin: 4px;
-    text-align: center;
-    font-size: inherit;
-  }
-
-  & button {
-    background-color: #f9f9f9;
-    padding: 4px 12px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: 200ms border-color;
-
-    &:hover {
-      border-color: rgba(0 0 0 / 0.5);
-    }
   }
 }
 
