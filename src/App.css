@@ -69,7 +69,9 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 50%;
   gap: 10px;
+  margin: 0px 48px;
 }
 
 .checkout-actions {
@@ -83,8 +85,8 @@ nav {
 
 .cart-items {
   display: flex;
-  flex: 0.8;
   flex-wrap: wrap;
+  flex: 2;
 }
 
 .price {
