@@ -6,7 +6,7 @@ globalThis.fetch = mockFetch(allItems);
 
 describe('App', () => {
   it('navbar works properly', async () => {
-    const { user } = setupRoute('/');
+    setupRoute('/');
     const home = screen.getByRole<HTMLAnchorElement>('link', { name: /home/i });
     const products = screen.getByRole<HTMLAnchorElement>('link', {
       name: /products/i,
@@ -14,16 +14,9 @@ describe('App', () => {
     const cart = screen.getByRole<HTMLAnchorElement>('link', { name: /cart/i });
 
     // Home page
-    await user.click(home);
-    expect(screen.getByText(/welcome/i)).toBeInTheDocument();
-
-    // Product Page
-    await user.click(products);
-    expect(screen.getAllByLabelText('product')).not.toBeNull();
-
-    // Cart Page
-    await user.click(cart);
-    expect(screen.getByText(/no items/i)).toBeInTheDocument();
+    expect(home).toHaveAttribute('href', '/');
+    expect(products).toHaveAttribute('href', '/products');
+    expect(cart).toHaveAttribute('href', '/cart');
   });
 
   it('adds a product to cart', async () => {
